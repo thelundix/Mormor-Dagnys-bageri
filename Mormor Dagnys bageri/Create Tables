@@ -1,0 +1,55 @@
+CREATE TABLE IF NOT EXISTS Suppliers (
+    supplier_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    address TEXT,
+    contact_person TEXT,
+    phone_number TEXT,
+    email TEXT UNIQUE NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Ingredients (
+    ingredient_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    article_number TEXT NOT NULL UNIQUE,
+    name TEXT NOT NULL,
+    price_per_kg REAL NOT NULL CHECK(price_per_kg > 0),
+    supplier_id INTEGER,
+    FOREIGN KEY (supplier_id) REFERENCES Suppliers(supplier_id)
+);
+
+CREATE TABLE IF NOT EXISTS Recipes (
+    recipe_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    product_name TEXT NOT NULL UNIQUE 
+);
+
+CREATE TABLE IF NOT EXISTS RecipeIngredients (
+    recipe_id INTEGER,
+    ingredient_id INTEGER,
+    quantity REAL NOT NULL CHECK(quantity > 0),
+    PRIMARY KEY (recipe_id, ingredient_id),
+    FOREIGN KEY (recipe_id) REFERENCES Recipes(recipe_id),
+    FOREIGN KEY (ingredient_id) REFERENCES Ingredients(ingredient_id)
+);
+
+CREATE TABLE IF NOT EXISTS Purchases (
+    purchase_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    supplier_id INTEGER NOT NULL,
+    ingredient_id INTEGER NOT NULL,
+    quantity REAL NOT NULL CHECK(quantity > 0),
+    purchase_date DATE NOT NULL,
+    FOREIGN KEY (supplier_id) REFERENCES Suppliers(supplier_id),
+    FOREIGN KEY (ingredient_id) REFERENCES Ingredients(ingredient_id)
+);
+
+CREATE TABLE IF NOT EXISTS Inventory (
+    ingredient_id INTEGER PRIMARY KEY,
+    quantity_in_stock REAL NOT NULL CHECK(quantity_in_stock >= 0),
+    quantity_purchased REAL NOT NULL DEFAULT 0 CHECK(quantity_purchased >= 0),
+    quantity_used REAL NOT NULL DEFAULT 0 CHECK(quantity_used >= 0),
+    FOREIGN KEY (ingredient_id) REFERENCES Ingredients(ingredient_id)
+);
+
+
+
+
+
+

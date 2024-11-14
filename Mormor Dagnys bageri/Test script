@@ -1,0 +1,45 @@
+
+-- information om alla leverantörer
+SELECT  
+       s.name AS Namn, 
+       s.address AS Adress, 
+       s.contact_person AS Kontaktperson, 
+       s.phone_number AS Telefonnummer, 
+       s.email AS "E-post adress"
+FROM Suppliers s;
+
+-- råvaror som varje leverantör tillhandahåller, samt artikelnummer och pris per kg
+SELECT s.name AS Leverantör, 
+       i.article_number AS Artikelnummer, 
+       i.name AS Råvara, 
+       i.price_per_kg AS "Pris per kg"
+FROM Suppliers s
+INNER JOIN Ingredients i ON s.supplier_id = i.supplier_id;
+
+-- inköp och lagerstatus för alla ingredienser
+SELECT s.name AS Leverantör, 
+       i.article_number AS Artikelnummer, 
+       i.name AS Råvara, 
+       inv.quantity_in_stock AS "Lagerstatus", 
+       inv.quantity_purchased AS "Köpt mängd"
+FROM Inventory inv
+INNER JOIN Ingredients i ON inv.ingredient_id = i.ingredient_id
+INNER JOIN Suppliers s ON i.supplier_id = s.supplier_id;
+
+
+-- råvaror som har lager under 150 kg (dvs. de som behöver beställas)
+SELECT s.name AS Leverantör, 
+       i.article_number AS Artikelnummer, 
+       i.name AS Råvara, 
+       inv.quantity_in_stock AS "Lagerstatus", 
+       inv.quantity_used AS "Använd mängd"
+FROM Inventory inv
+INNER JOIN Ingredients i ON inv.ingredient_id = i.ingredient_id
+INNER JOIN Suppliers s ON i.supplier_id = s.supplier_id
+WHERE inv.quantity_in_stock < 150;
+
+
+
+
+
+

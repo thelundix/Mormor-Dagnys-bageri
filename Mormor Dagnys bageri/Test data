@@ -1,0 +1,66 @@
+-- Aktivera främmande nycklar innan insert..
+PRAGMA foreign_keys = 1;
+
+-- Lägga till fler Leverantörer 
+INSERT INTO Suppliers (name, address, contact_person, phone_number, email) VALUES 
+('Gourmet Mat', 'Fina Gatan 123, Matstaden', 'Alice Johnson', '0701234567', 'alice@gourmetmat.com'),
+('Bageriets Glädje', 'Bagarens Väg 456, Brödstaden', 'Bob Baker', '0702345678', 'bob@bagerietsgladje.com'),
+('Färska Varor', 'Gårdsgränd 789, Ekodalen', 'Carol Farmer', '0703456789', 'carol@farskavaror.com'),
+('Mejeri Världen', 'Mejeri Allé 321, Mjölkstaden', 'David Milker', '0704567890', 'david@mejerivarlden.com'),
+('Krydd Himmel', 'Kryddvägen 654, Smakbyn', 'Eve Spicer', '0705678901', 'eve@kryddhimmel.com');
+
+-- Lägga till fler Ingredienser
+INSERT INTO Ingredients (article_number, name, price_per_kg, supplier_id) VALUES 
+('B001', 'Ekologiskt Mjöl', 12.0, 1),
+('B002', 'Rörsocker', 7.0, 2),
+('B003', 'Färskt Smör', 18.0, 4),
+('B004', 'Havssalt', 3.0, 5),
+('B005', 'Torrjäst', 14.0, 3),
+('B006', 'Kakaopulver', 25.0, 1),
+('B007', 'Mandel', 30.0, 5),
+('B008', 'Helmjölk', 8.0, 4),
+('B009', 'Bakpulver', 5.0, 2),
+('B010', 'Vaniljextrakt', 50.0, 3);
+
+-- Lägga till fler Recept
+INSERT INTO Recipes (product_name) VALUES 
+('Chokladkaka'),
+('Vaniljkakor'),
+('Mandel Biscotti'),
+('Bananbröd'),
+('Cheesecake');
+
+-- Lägga till fler Receptingredienser
+INSERT INTO RecipeIngredients (recipe_id, ingredient_id, quantity) VALUES 
+(1, 6, 0.5),
+(1, 1, 2.0),
+(1, 2, 1.0),
+(2, 10, 0.1),
+(2, 1, 1.5),
+(2, 2, 0.8),
+(3, 7, 0.5),
+(3, 1, 1.8),
+(3, 2, 1.0),
+(4, 1, 2.0),
+(4, 2, 1.2),
+(4, 9, 0.2),
+(5, 8, 1.5),
+(5, 3, 0.5),
+(5, 1, 2.5);
+
+-- Lägga till fler Köp
+INSERT INTO Purchases (supplier_id, ingredient_id, quantity, purchase_date) VALUES 
+(1, 1, 200.0, '2023-04-01'),
+(2, 2, 300.0, '2023-04-05'),
+(3, 5, 150.0, '2023-05-01'),
+(4, 8, 250.0, '2023-05-10'),
+(5, 7, 100.0, '2023-06-01');
+
+-- Lägga till fler Lagerposter
+INSERT INTO Inventory (ingredient_id, quantity_in_stock, quantity_purchased, quantity_used) VALUES 
+(1, 200.0, 200.0, 0.0),
+(2, 300.0, 300.0, 0.0),
+(5, 150.0, 150.0, 0.0),
+(8, 250.0, 250.0, 0.0),
+(7, 100.0, 100.0, 0.0);
+

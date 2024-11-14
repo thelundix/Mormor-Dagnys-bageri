@@ -1,0 +1,15 @@
+-- Tables
+DROP TABLE IF EXISTS Suppliers;
+DROP TABLE IF EXISTS Ingredients;
+DROP TABLE IF EXISTS Recipes;
+DROP TABLE IF EXISTS RecipeIngredients;
+DROP TABLE IF EXISTS Purchases;
+DROP TABLE IF EXISTS Inventory;
+
+-- Rows
+DELETE FROM Suppliers;
+DELETE FROM Ingredients;
+DELETE FROM Recipes;
+DELETE FROM RecipeIngredients;
+DELETE FROM Purchases;
+DELETE FROM Inventory;

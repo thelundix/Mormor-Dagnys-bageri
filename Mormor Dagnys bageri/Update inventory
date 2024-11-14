@@ -1,0 +1,18 @@
+-- Dummy data för att leka med inventory...
+
+-- Använda 10 kg Ekologiskt Mjöl (ingredient_id = 1)
+UPDATE Inventory
+SET quantity_used = quantity_used + 10,
+    quantity_in_stock = quantity_in_stock - 10
+WHERE ingredient_id = 1
+AND quantity_in_stock >= 10;
+
+-- Använda 5 kg Rörsocker (ingredient_id = 2)
+UPDATE Inventory
+SET quantity_used = quantity_used + 5,
+    quantity_in_stock = quantity_in_stock - 5
+WHERE ingredient_id = 2
+AND quantity_in_stock >= 5;
+
+
+
